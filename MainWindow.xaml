@@ -4,9 +4,60 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EmployeePortal"
+        xmlns:Views="clr-namespace:EmployeePortal.Views"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="800" WindowState="Maximized">
+
     <Grid>
+
+        <!-- Main content -->
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="3*"/>
+            </Grid.ColumnDefinitions>
+
+            <Views:EmployeeListView Grid.Column="0"/>
+
+            <Views:EmployeeDetailsView Grid.Column="1"/>
+        </Grid>
+
+        <!-- Add Employee Overlay -->
+        <Grid>
+
+            <Grid.Style>
+                <Style TargetType="Grid">
+
+                    <Setter Property="Visibility"
+                    Value="Collapsed"/>
+
+                    <Style.Triggers>
+
+                        <DataTrigger Binding="{Binding IsAddEmployeeFormVisible}"
+                             Value="True">
+
+                            <Setter Property="Visibility"
+                            Value="Visible"/>
+
+                        </DataTrigger>
+
+                    </Style.Triggers>
+
+                </Style>
+            </Grid.Style>
+
+
+            <!-- Dark background -->
+            <Border Background="#66000000"/>
+
+
+            <!-- Employee form -->
+            <Views:EmployeeFormView
+        Width="500"
+        HorizontalAlignment="Center"
+        VerticalAlignment="Center"/>
+
+        </Grid>
 
     </Grid>
 </Window>
